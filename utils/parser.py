@@ -2,6 +2,7 @@ import os
 import pdfplumber
 import PyPDF2
 import docx
+import re
 
 def extract_text_from_pdf(pdf_path):
     """Extract text from a PDF file using pdfplumber, with a fallback to PyPDF2."""
@@ -55,3 +56,19 @@ def extract_text(file_path):
         return extract_text_from_docx(file_path)
     else:
         raise ValueError(f"Unsupported file format: {ext}")
+
+def extract_email(text):
+    email = re.search(r'[\w\.-]+@[\w\.-]+', text)
+    return email.group(0) if email else "Not Found"
+
+def extract_phone(text):
+    phone = re.search(r'\+?\d[\d -]{8,12}\d', text)
+    return phone.group(0).strip() if phone else "Not Found"
+
+def extract_name(text):
+    # Simple heuristic to extract name: often the first or second line in a resume
+    lines = [line.strip() for line in text.split('\n') if line.strip()]
+    for line in lines[:5]: # look at first 5 non-empty lines
+        if 1 <= len(line.split()) <= 4 and re.match(r'^[A-Za-z\s\.-]+$', line):
+            return line.title()
+    return "Not Found"

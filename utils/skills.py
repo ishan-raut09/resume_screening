@@ -1,9 +1,20 @@
 import re
 
 PREDEFINED_SKILLS = [
-    "Python", "Java", "C++", "JavaScript", "React", "Node.js", "SQL",
-    "MongoDB", "PostgreSQL", "AWS", "Azure", "Docker", "Kubernetes",
-    "Git", "Linux", "Machine Learning", "Deep Learning", "TensorFlow", "PyTorch"
+    "Python", "Java", "C++", "C", "JavaScript", "TypeScript",
+    "React", "Next.js", "Angular", "Vue",
+    "Node.js", "Express",
+    "Django", "Flask", "FastAPI",
+    "Spring", "Spring Boot",
+    "MySQL", "PostgreSQL", "MongoDB", "Redis",
+    "AWS", "Azure", "GCP",
+    "Docker", "Kubernetes",
+    "Git", "GitHub",
+    "Linux",
+    "TensorFlow", "PyTorch", "Scikit-learn",
+    "Machine Learning", "Deep Learning", "NLP",
+    "Power BI", "Tableau",
+    "HTML", "CSS", "Tailwind"
 ]
 
 def clean_text(text):

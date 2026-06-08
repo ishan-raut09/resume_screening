@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import shutil
 
-from utils.parser import extract_text
+from utils.parser import extract_text, extract_name, extract_email, extract_phone
 from utils.skills import extract_skills
 from utils.scorer import analyze_resume
 
@@ -254,6 +254,13 @@ if analyze_button:
                     st.error(f"Failed to extract text from {file.name}. File might be empty or scanned image.")
                     continue
                 
+                # Extract Contact Info
+                c_name = extract_name(resume_text)
+                if c_name == "Not Found": 
+                    c_name = file.name
+                c_email = extract_email(resume_text)
+                c_phone = extract_phone(resume_text)
+                
                 # Predict Category
                 predicted_category = pipeline.predict([resume_text])[0]
                 
@@ -264,7 +271,10 @@ if analyze_button:
                 analysis = analyze_resume(resume_text, resume_skills, jd_input, jd_skills)
                 
                 candidates_data.append({
-                    "name": file.name,
+                    "filename": file.name,
+                    "name": c_name,
+                    "email": c_email,
+                    "phone": c_phone,
                     "predicted_category": predicted_category,
                     "ats_score": analysis["ats_score"],
                     "similarity_score": analysis["similarity_score"],
@@ -290,14 +300,20 @@ if analyze_button:
             candidates_df["rank"] = candidates_df.index + 1
             
             # Show ranking table
-            display_df = candidates_df[["rank", "name", "predicted_category", "ats_score", "similarity_score", "final_score"]].copy()
-            display_df.columns = ["Rank", "Candidate Name", "Predicted Category", "ATS Score (%)", "Semantic Similarity (%)", "Final Score (%)"]
+            display_df = candidates_df[["rank", "name", "email", "phone", "predicted_category", "ats_score", "similarity_score", "final_score"]].copy()
+            display_df.columns = ["Rank", "Candidate Name", "Email", "Phone", "Predicted Category", "ATS Score (%)", "Semantic Similarity (%)", "Final Score (%)"]
             
             st.dataframe(
                 display_df.style.highlight_max(subset=["Final Score (%)"], color="#dcfce7"),
                 use_container_width=True,
                 hide_index=True
             )
+            
+            # Analytics Dashboard / Bar Chart
+            st.markdown("### 📊 ATS Score Comparison")
+            chart_data = candidates_df.set_index("name")[["ats_score", "similarity_score", "final_score"]]
+            chart_data.columns = ["ATS Score", "Semantic Similarity", "Final Score"]
+            st.bar_chart(chart_data)
             
             # Clear upload directory files after loading in memory
             for file in os.listdir(UPLOAD_DIR):

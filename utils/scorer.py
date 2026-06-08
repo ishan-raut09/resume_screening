@@ -43,9 +43,9 @@ def calculate_semantic_similarity(resume_text, jd_text):
 
 def calculate_final_score(ats_score, similarity_score):
     """
-    Final Score = 70% ATS Score + 30% Similarity Score
+    Final Score = 80% ATS Score + 20% Similarity Score
     """
-    final = 0.7 * ats_score + 0.3 * similarity_score
+    final = 0.8 * ats_score + 0.2 * similarity_score
     return round(final, 1)
 
 def analyze_resume(resume_text, resume_skills, jd_text, required_skills):

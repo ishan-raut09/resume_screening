@@ -1,32 +1,32 @@
-Test Accuracy: 73.44%
+Test Accuracy: 72.23%
 
                         precision    recall  f1-score   support
 
-            ACCOUNTANT       0.72      0.88      0.79        24
-              ADVOCATE       0.59      0.71      0.64        24
-           AGRICULTURE       0.89      0.62      0.73        13
-               APPAREL       0.62      0.42      0.50        19
-                  ARTS       0.62      0.38      0.47        21
-            AUTOMOBILE       1.00      0.43      0.60         7
-              AVIATION       0.82      0.75      0.78        24
-               BANKING       0.78      0.78      0.78        23
+            ACCOUNTANT       0.75      0.88      0.81        24
+              ADVOCATE       0.60      0.62      0.61        24
+           AGRICULTURE       0.78      0.54      0.64        13
+               APPAREL       0.64      0.37      0.47        19
+                  ARTS       0.64      0.43      0.51        21
+            AUTOMOBILE       0.75      0.43      0.55         7
+              AVIATION       0.86      0.79      0.83        24
+               BANKING       0.77      0.74      0.76        23
                    BPO       0.00      0.00      0.00         4
-  BUSINESS-DEVELOPMENT       0.70      0.88      0.78        24
-                  CHEF       0.86      0.79      0.83        24
-          CONSTRUCTION       0.76      0.86      0.81        22
-            CONSULTANT       0.77      0.43      0.56        23
-              DESIGNER       0.91      0.95      0.93        21
-         DIGITAL-MEDIA       0.73      0.58      0.65        19
-           ENGINEERING       0.75      0.75      0.75        24
+  BUSINESS-DEVELOPMENT       0.67      0.83      0.74        24
+                  CHEF       0.86      0.75      0.80        24
+          CONSTRUCTION       0.75      0.82      0.78        22
+            CONSULTANT       0.83      0.43      0.57        23
+              DESIGNER       0.90      0.90      0.90        21
+         DIGITAL-MEDIA       0.75      0.63      0.69        19
+           ENGINEERING       0.70      0.79      0.75        24
                FINANCE       0.86      0.75      0.80        24
-               FITNESS       0.85      0.74      0.79        23
-            HEALTHCARE       0.61      0.74      0.67        23
-                    HR       0.84      0.95      0.89        22
-INFORMATION-TECHNOLOGY       0.75      1.00      0.86        24
-      PUBLIC-RELATIONS       0.67      0.82      0.73        22
-                 SALES       0.60      0.65      0.62        23
-               TEACHER       0.62      0.80      0.70        20
+               FITNESS       0.82      0.78      0.80        23
+            HEALTHCARE       0.62      0.70      0.65        23
+                    HR       0.75      0.95      0.84        22
+INFORMATION-TECHNOLOGY       0.83      1.00      0.91        24
+      PUBLIC-RELATIONS       0.55      0.77      0.64        22
+                 SALES       0.52      0.57      0.54        23
+               TEACHER       0.67      0.90      0.77        20
 
-              accuracy                           0.73       497
-             macro avg       0.72      0.69      0.69       497
-          weighted avg       0.74      0.73      0.73       497
+              accuracy                           0.72       497
+             macro avg       0.70      0.68      0.68       497
+          weighted avg       0.73      0.72      0.71       497

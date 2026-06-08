@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pickle
+import re
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
@@ -55,6 +56,19 @@ def train():
     print("\nCategory distribution:")
     print(df["Category"].value_counts())
     
+    # Preprocess text data
+    print("\nPreprocessing resume text...")
+    def preprocess_text(text):
+        text = str(text).lower()
+        text = re.sub(r'http\S+', ' ', text)
+        text = re.sub(r'www\S+', ' ', text)
+        text = re.sub(r'\S+@\S+', ' ', text)
+        text = re.sub(r'[^a-zA-Z\s]', ' ', text)
+        text = re.sub(r'\s+', ' ', text)
+        return text
+
+    df["Resume_str"] = df["Resume_str"].apply(preprocess_text)
+    
     # Train-test split
     X = df["Resume_str"]
     y = df["Category"]
@@ -67,11 +81,12 @@ def train():
     print("\nTraining Linear SVM model...")
     pipeline = Pipeline([
         ("tfidf", TfidfVectorizer(
-            max_features=10000,
+            max_features=15000,
             ngram_range=(1,2),
-            stop_words='english'
+            stop_words='english',
+            sublinear_tf=True
         )),
-        ("clf", LinearSVC(random_state=42))
+        ("clf", LinearSVC(random_state=42, class_weight="balanced", C=2.0))
     ])
     
     pipeline.fit(X_train, y_train)
