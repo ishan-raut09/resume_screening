@@ -1,0 +1,19 @@
+# Python bytecode & cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Datasets (large files)
+dataset/
+temp_uploads/
+
+# Trained models (large binaries)
+model/resume_pipeline.pkl
+
+# IDE / OS specific files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
