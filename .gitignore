@@ -10,7 +10,7 @@ dataset/
 temp_uploads/
 
 # Trained models (large binaries)
-model/resume_pipeline.pkl
+# model/resume_pipeline.pkl
 
 # IDE / OS specific files
 .vscode/
